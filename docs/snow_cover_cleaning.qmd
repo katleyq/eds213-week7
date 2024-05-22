@@ -1,0 +1,103 @@
+---
+title: "eds213_data_cleaning_assign_KatLe"
+author: "Kat Le"
+format: html
+editor: visual
+---
+
+GitHub repo: <https://github.com/katleyq/bren-meds213-data-cleaning>
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(janitor)
+library(here)
+```
+
+```{r message=FALSE, warning=FALSE}
+data <- read_csv(here("data/raw/ASDN_Snow_survey.csv"))
+```
+
+Dealing with NA values in percent cover columns
+
+```{r message=FALSE, warning=FALSE}
+# replace similar expressions for NA with NA. 
+data_cleaned <- data %>% 
+  mutate(Water_cover = case_when(
+    Water_cover == "unk" ~ NA,
+    Water_cover == "n/a" ~ NA,
+    Water_cover == "." ~ NA,
+    Water_cover == "-" ~ NA,
+    .default = Water_cover
+  )) %>% 
+  mutate(Land_cover = case_when(
+    Land_cover == "unk" ~ NA,
+    Land_cover == "n/a" ~ NA,
+    Land_cover == "." ~ NA,
+    Land_cover == "-" ~ NA,
+    .default = Land_cover
+  )) %>% 
+  mutate(Snow_cover = case_when(
+    Snow_cover == "unk" ~ NA,
+    Snow_cover == "n/a" ~ NA,
+    Snow_cover == "." ~ NA,
+    Snow_cover == "-" ~ NA,
+    .default = Snow_cover
+  )) %>%
+  mutate(Total_cover = case_when(
+    Total_cover == "unk" ~ NA,
+    Total_cover == "n/a" ~ NA,
+    Total_cover == "." ~ NA,
+    Total_cover == "-" ~ NA,
+    Total_cover == "<row r=\\64\\ spans=\\1:11\\ x14ac:dyDescent=\\0.2\\>" 
+    ~ NA,
+    .default = Total_cover
+  )) %>%
+  
+  # make cover columns numeric so we can filter
+  mutate(Water_cover = as.numeric(Water_cover),
+         Land_cover = as.numeric(Land_cover),
+         Snow_cover = as.numeric(Snow_cover)) %>%
+  
+  # remove negative values and values above 100 from percent cover columns because those values do not make logical sense.
+  mutate(Water_cover = case_when(
+    Water_cover < 0 ~ NA,
+    Water_cover > 100 ~ NA,
+    .default = Water_cover
+  )) %>% 
+  mutate(Land_cover = case_when(
+    Land_cover < 0 ~ NA,
+    Land_cover > 100 ~ NA,
+    .default = Land_cover
+  )) %>% 
+  mutate(Snow_cover = case_when(
+    Snow_cover < 0 ~ NA,
+    Snow_cover > 100 ~ NA,
+    .default = Snow_cover
+  )) %>% 
+  
+  # ensure total cover = Snow_cover + Land_cover + water cover. ignore NAs using coalesce() because you cannot add them. this allows us to maintain the data we do have
+  mutate(Total_cover = coalesce(Snow_cover, 0) + 
+           coalesce(Land_cover, 0) + 
+           coalesce(Water_cover, 0)) %>% 
+  
+  # remove observations where total cover > 100 because these are not logical and there is no way of guessing which values are right or wrong. i would try to contact the observers to see if they remember, but i think it's safe to drop the observations so it doesn't interfere with future analyses
+  filter(Total_cover <= 100)
+  
+```
+
+Checking relationship between Snow_cover, Land_cover, Water_cover and Total_cover columns
+
+```{r}
+# test to see if there are any observatiosn where Total_cover is not the sum of the three cover columns
+data_checked <- data_cleaned %>% 
+  mutate(is_total_correct = (Water_cover + Land_cover + Snow_cover) 
+         == Total_cover) %>% 
+  filter(is_total_correct == FALSE)
+  
+```
+
+Write the clean csv file
+
+```{r}
+write_csv(data_cleaned, here::here("data/processed/snow_cover.csv"))
+```
