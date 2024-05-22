@@ -1,8 +1,3 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
 
 This README.txt file was generated on 2024-05-21 by Kat Le.
 
