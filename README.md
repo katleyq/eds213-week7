@@ -280,37 +280,7 @@ $$snow\_cover.csv$$
 
 5\. **Specialized formats or other abbreviations used**:
 
-Site
-
--   BARR: Barrow, Alaska, USA (71.3, -156.6)
-
--   BURN: Burntpoint Creek, Ontario Canada (55.2, -84.3)
-
--   BYLO: Bylot Island, Nunavut, Canada (73.2, -80)
-
--   CAKR: Cape Krusenstern, Alaska, USA (67.1, -163.5)
-
--   CARI: Canning River Delta, Alaska, USA (70.1, -145.8)
-
--   CHAU: Chaun River Delta, Chukotka, Russia (68.8, 170.6)
-
--   CHUR: Churchill, Manitoba, Canada (58.7, -93.8)
-
--   COAT: Coats Island, Nunavut, Canada (62.9, -82.5)
-
--   COLV: Colville River Delta, Alaska, USA (70.4, -150.7)
-
--   EABA: East Bay, Nunavut, Canada (64, -81.7)
-
--   IGLO: Igloolik, Nunavut, Canada (69.4, -81.6)
-
--   IKPI: Ikpikpuk, Alaska, USA (70.6, -154.7)
-
--   MADE: Mackensize River Delta, Northwest Territories, Canada (69.4,-135)
-
--   NOME: Nome, Alaska, USA (64.4, -164.9)
-
--   PRBA: Prudhoe Bay, Alaska, USA (70.3, -148.6)
+See geographic location section for Site abbreviation codes
 
 $$species\_presence.csv$$
 
@@ -338,34 +308,4 @@ $$species\_presence.csv$$
 
 5\. **Specialized formats or other abbreviations used**:
 
-Site
-
--   BARR: Barrow, Alaska, USA (71.3, -156.6)
-
--   BURN: Burntpoint Creek, Ontario Canada (55.2, -84.3)
-
--   BYLO: Bylot Island, Nunavut, Canada (73.2, -80)
-
--   CAKR: Cape Krusenstern, Alaska, USA (67.1, -163.5)
-
--   CARI: Canning River Delta, Alaska, USA (70.1, -145.8)
-
--   CHAU: Chaun River Delta, Chukotka, Russia (68.8, 170.6)
-
--   CHUR: Churchill, Manitoba, Canada (58.7, -93.8)
-
--   COAT: Coats Island, Nunavut, Canada (62.9, -82.5)
-
--   COLV: Colville River Delta, Alaska, USA (70.4, -150.7)
-
--   EABA: East Bay, Nunavut, Canada (64, -81.7)
-
--   IGLO: Igloolik, Nunavut, Canada (69.4, -81.6)
-
--   IKPI: Ikpikpuk, Alaska, USA (70.6, -154.7)
-
--   MADE: Mackensize River Delta, Northwest Territories, Canada (69.4,-135)
-
--   NOME: Nome, Alaska, USA (64.4, -164.9)
-
--   PRBA: Prudhoe Bay, Alaska, USA (70.3, -148.6)
+See geographic location section for Site abbreviations
